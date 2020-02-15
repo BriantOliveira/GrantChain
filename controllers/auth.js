@@ -35,6 +35,10 @@ const hashPassword = async function(password) {
 /**
  * User Signup Routes
  */
+router.get('/signup', async (req, res) => {
+  clientResponse(res, 200, {message: 'User Signup Page'})
+});
+
 router.post('/signup', async (req, res) => {
   try {
     /** Check if user exist already */
@@ -87,6 +91,10 @@ router.post('/signup', async (req, res) => {
 /**
  * User Login Routes
  */
+router.get('/login', async (req, res) => {
+  clientResponse(res, 200, {message: 'User Login Page'})
+});
+
 router.post('/login', async (req, res) => {
   try {
     /** Get the user to compare password */
@@ -131,6 +139,10 @@ router.post('/login', async (req, res) => {
 /**
  * Organization Signup Routes
  */
+router.get('/organization/signup', async (req, res) => {
+  clientResponse(res, 200, {message: 'Organization Signup Page'})
+});
+
 router.post('/organization/signup', async (req, res) => {
   try {
     /** Check if Organization exist already */
@@ -182,6 +194,10 @@ router.post('/organization/signup', async (req, res) => {
 /**
  * Organization Login Routes
  */
+router.get('/organization/login', async (req, res) => {
+  clientResponse(res, 200, {message: 'Organization Login Page'})
+});
+
 router.post('/organization/login', async (req, res) => {
   try {
     /** Get the Organization to compare password */

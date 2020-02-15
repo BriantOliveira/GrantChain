@@ -16,12 +16,13 @@ const bodyParser = require('body-parser');
 const { verifyAuthentication } = require('./utils/middleware');
 
 
-//wallets
+/** Wallet */
 const ost = require('./services/ost.js');
-//const uniLogin = require('./services/unilogin.js');
+
 
 /** Import Routes */
-const authRouter = require('./controllers/auth.js');
+const indexRouter = require('./controllers/index');
+const authRouter = require('./controllers/auth');
 
 /** Instantiate the server */
 const app = express();
@@ -66,14 +67,13 @@ sequelize
   });
 
 /** Set up routes */
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
 
 /** Protected Routes */
 app.use(verifyAuthentication);
 
-//wallets
-
-//app.use(uniLogin);
+// wallets
 // app.use(ost);
 
 /** Any remaining request with an extension (.js, .css, etc...) send 404 */
