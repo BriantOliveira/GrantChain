@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     privileges: {
       type: DataTypes.STRING
     },
-    walletAddress: {
+    walletAddress3BoxId: {
       type: DataTypes.TEXT
     },
     schoolName: {

@@ -1,5 +1,5 @@
 /*
- * GrantChain - Signup Router
+ * GrantChain - Auth Router
  */
 const { Router } = require('express');
 const jwt = require('jsonwebtoken');

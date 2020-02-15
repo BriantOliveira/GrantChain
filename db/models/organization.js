@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     category: {
       type: DataTypes.ARRAY(DataTypes.STRING)
     },
-    walletAddress: {
+    walletAddress3BoxId: {
       type: DataTypes.TEXT
     },
     bio: {

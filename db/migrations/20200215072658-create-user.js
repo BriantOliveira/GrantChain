@@ -35,7 +35,7 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 'collaborator',
       },
-      walletAddress: {
+      walletAddress3BoxId: {
         type: Sequelize.TEXT
       },
       schoolName: {
