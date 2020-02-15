@@ -3,7 +3,15 @@
 */
 const contractService = require('../queries/contract');
 const { clientResponse } = require('../utils/clientResponse');
+const { contractInstance } = require('../db/models');
 const logger = require('../utils/logger');
+
+/** Create a new Contract Instance */
+const createNewContract = async contractInfo => {
+  const newContract = await contractInstance.create(contractInfo, { w: 1 });
+
+  return newContract;
+};
 
 /** Retrieve the contracts in the database */
 const getContracts = async (_, res) => {
@@ -121,6 +129,7 @@ const deleteContractInstance = async (req, res) => {
 };
 
 module.exports = {
+  createNewContract,
   getContracts,
   getContractByID,
   getContractByUserID,
