@@ -1,4 +1,5 @@
 require('dotenv').config();
+const Sequelize = require('sequelize');
 
 module.exports = {
   development: {
@@ -6,6 +7,7 @@ module.exports = {
     password: process.env.DBPASSWORD,
     database: 'grantchain',
     host: process.env.DBHOST,
+    operatorsAliases: Sequelize.Op,
     dialect: 'postgres',
   },
   test: {
@@ -22,5 +24,6 @@ module.exports = {
     database: process.env.DBNAME,
     host: process.env.DBHOST,
     dialect: 'postgres',
+    operatorsAliases: Sequelize.Op
   },
 };

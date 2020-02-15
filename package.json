@@ -11,7 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
     "dotenv": "^8.2.0",
@@ -23,12 +23,13 @@
     "pg": "^7.18.1",
     "pg-hstore": "^2.3.3",
     "sanitize": "^2.1.0",
-    "sequelize": "^5.21.4",
+    "sequelize": "^5.21.3",
+    "sequelize-tokenify": "^0.2.2",
     "uuid": "^3.4.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "sequelize-cli": "^5.5.1",
+    "body-parse": "^0.1.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "eslint": "^5.16.0",
@@ -41,6 +42,7 @@
     "jest": "^24.8.0",
     "lint-staged": "^9.5.0",
     "mocha": "^5.2.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "sequelize-cli": "^5.5.1"
   }
 }

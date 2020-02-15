@@ -16,6 +16,7 @@ const bodyParser = require('body-parser');
 const { verifyAuthentication } = require('./utils/middleware');
 
 /** Import Routes */
+const authRouter = require('./controllers/auth.js');
 
 /** Instantiate the server */
 const app = express();
@@ -60,7 +61,7 @@ sequelize
   });
 
 /** Set up routes */
-
+app.use('/auth', authRouter);
 
 /** Protected Routes */
 app.use(verifyAuthentication);
