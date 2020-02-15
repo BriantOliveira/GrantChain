@@ -15,6 +15,11 @@ const expressSanitizer = require('express-sanitizer');
 const bodyParser = require('body-parser');
 const { verifyAuthentication } = require('./utils/middleware');
 
+
+//wallets
+const ost = require('./services/ost.js');
+//const uniLogin = require('./services/unilogin.js');
+
 /** Import Routes */
 const authRouter = require('./controllers/auth.js');
 
@@ -66,7 +71,10 @@ app.use('/auth', authRouter);
 /** Protected Routes */
 app.use(verifyAuthentication);
 
+//wallets
 
+//app.use(uniLogin);
+// app.use(ost);
 
 /** Any remaining request with an extension (.js, .css, etc...) send 404 */
 app.use((req, _, next) => {
