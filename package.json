@@ -10,6 +10,7 @@
   "author": "Elliot Briant, Todd Youngblood, Jaeson Booker, Jamie D'area",
   "license": "MIT",
   "dependencies": {
+    "@ostdotcom/ost-sdk-js": "^2.2.2",
     "bcryptjs": "^2.4.3",
     "body-parse": "^0.1.0",
     "compression": "^1.7.4",
