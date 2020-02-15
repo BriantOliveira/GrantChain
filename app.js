@@ -62,7 +62,7 @@ sequelize
 
 
 /** Protected Routes */
-app.use(verifyAuthentication);
+// app.use(verifyAuthentication);
 
 
 
