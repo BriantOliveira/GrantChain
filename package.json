@@ -1,13 +1,13 @@
 {
-  "name": "grantparty",
+  "name": "grantchain",
   "version": "1.0.0",
-  "description": "GrantParty is a platform to connect non-profits and collaborators ",
+  "description": "GrantChain is a decentralized collaborative ecosystem that allows non-profit to crowdfund and connect with students for grant writing collaboration.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Elliot Briant, Todd Youngblood, Jaeson Booker, Jamie D'area",
+  "author": "Elliot Briant, Todd Youngblood, Jaeson Booker, Jamie D'Andria",
   "license": "MIT",
   "dependencies": {
     "@ostdotcom/ost-sdk-js": "^2.2.2",
