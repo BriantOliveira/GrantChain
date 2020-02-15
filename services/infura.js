@@ -4,8 +4,8 @@ const { clientResponse } = require('../utils/clientResponse');
 const iRouter = Router();
 const infuraEndPoint = "mainnet.infura.io/v3/";
 
-const IPFSPortalGet = function getObjectData() {
-    iRouter.get('object/data?arg=' + project_id, async (req, res) => {
+const IPFSPortalGet = function getObjectData(key) {
+    iRouter.get(infuraEndPoint + project_id + 'object/data?arg=' + key, async (req, res) => {
       try {
         return clientResponse(res, 200, {
           message: 'data retrieved from IPFS',
@@ -18,7 +18,7 @@ const IPFSPortalGet = function getObjectData() {
 };
 
 const IPFSPortalPost = function postToIPFS(jsonObject) {
-    iRouter.post('add?cid-version=0&hash=sha2-256&file=jsonObject', async (req, res) => {
+    iRouter.post(infuraEndPoint + project_id +'add?cid-version=0&hash=sha2-256&file=jsonObject', async (req, res) => {
       try {
         return clientResponse(res, 200, {
           message: 'posted to IPFS',
