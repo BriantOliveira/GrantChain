@@ -5,11 +5,14 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "universal-login start:dev"
   },
   "author": "Elliot Briant, Todd Youngblood, Jaeson Booker, Jamie D'area",
   "license": "MIT",
   "dependencies": {
+    "@universal-login/sdk": "^0.5.9",
+    "@universal-login/web3": "^0.5.9",
     "body-parse": "^0.1.0",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
@@ -20,7 +23,13 @@
     "nodemon": "^2.0.2",
     "path": "^0.12.7",
     "pg": "^7.18.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "sanitize": "^2.1.0",
-    "sequelize": "^5.21.4"
+    "sequelize": "^5.21.4",
+    "web3": "^1.2.6"
+  },
+  "devDependencies": {
+    "@universal-login/ops": "^0.5.9"
   }
 }
