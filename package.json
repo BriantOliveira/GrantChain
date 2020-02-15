@@ -4,6 +4,7 @@
   "description": "GrantParty is a platform to connect non-profits and collaborators ",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Elliot Briant, Todd Youngblood, Jaeson Booker, Jamie D'area",
