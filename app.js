@@ -13,6 +13,7 @@ const { Op } = Sequelize;
 const sanitizer = require('sanitize');
 const expressSanitizer = require('express-sanitizer');
 const bodyParser = require('body-parser');
+const { verifyAuthentication } = require('./utils/middleware');
 
 /** Import Routes */
 
@@ -62,7 +63,7 @@ sequelize
 
 
 /** Protected Routes */
-// app.use(verifyAuthentication);
+app.use(verifyAuthentication);
 
 
 
