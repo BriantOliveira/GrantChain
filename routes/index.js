@@ -8,11 +8,25 @@
 
 const express = require('express');
 const contract = require('../controllers/contract');
+const profile = require('../controllers/profile');
 
 const router = express.Router();
 
+/*
+* Organization Profile Routes
+*/
+router.patch('/organization/update', profile.updateOrganizationProfile);
 
-// Contracts Routes
+
+/*
+* User Profile Routes
+*/
+router.patch('/user/update', profile.updateUserProfile);
+
+
+/*
+* Contracts Routes 
+*/
 router.post('/contract/new',  contract.newContract);
 router.get('/contract', contract.getContracts);
 router.get('/contract/:id', contract.getContractByID);

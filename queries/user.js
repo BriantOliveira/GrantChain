@@ -3,8 +3,8 @@ const { User } = require('../db/models');
 
 const { Op } = Sequelize;
 
-const getUserByID = async id => {
-  const user = await User.findById(id);
+const getUserByID = async id => { 
+  const user = await User.findOne({ where: { id } });
 
   return user;
 };
@@ -21,4 +21,11 @@ const createUser = async userInfo => {
   return user;
 };
 
-module.exports = { getUserByID, getUserByEmail, createUser };
+const findUserAndUpdate = async payload => {
+ 
+  const updatedUser = await User.update(payload, { where: { id: payload.id } }, { returning: true });
+
+  return updatedUser;
+};
+
+module.exports = { getUserByID, getUserByEmail, createUser, findUserAndUpdate };

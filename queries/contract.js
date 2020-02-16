@@ -20,7 +20,7 @@ const getContractInstance = async () => {
 };
 
 const getContractInstanceByID = async id => {
-  const contract = await ContractInstance.find({ where: { id } });
+  const contract = await ContractInstance.findOne({ where: { id } });
 
   return contract;
 };

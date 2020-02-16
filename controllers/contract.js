@@ -12,19 +12,11 @@ const newContract = async (req, res) => {
     // TODO: Need to add some validation here for the body
     const { body } = req;
 
-    const item = await contractService.createNewContract(body);
-
-    // FIXME: What are the scenarios in which this would actually be truthy?
-    // if (!item) {
-    //   logger.error(`An error occurred attempting to create Item: ${body}`);
-    //   return clientResponse(res, 500, {
-    //     message: 'An error occurred attempting to create Item',
-    //   });
-    // }
+    const contract = await contractService.createNewContract(body);
 
     return clientResponse(res, 200, {
-      message: 'Item created successfully',
-      data: { item },
+      message: 'Contract created successfully',
+      data: { contract },
     });
   } catch (error) {
     logger.error(`An unexpected error has occurred: ${error}`);
@@ -32,34 +24,10 @@ const newContract = async (req, res) => {
   }
 };
 
-// const newContract = async (req, res) => {
-//   try {
-//     console.log("BODY 1: ", req.body)
-//     const savedContract = await contractService.createNewContract(req.body);
-
-//     console.log("HERE: ", savedContract)
-//     /** Early exit if saving contract fails */
-//     if (!savedContract) {
-//       logger.error(`Contract creation error: ${req.body}`);
-//       return clientResponse(res, 500, {
-//         message: 'Something went wrong trying to create the contract.',
-//       });
-//     }
-
-//     return clientResponse(res, 200, {
-//       message: 'Contract created successfully.',
-//       data: { savedContract },
-//     });
-//   } catch (error) {
-//     logger.error(`An unexpected error has occured: ${error}`);
-//     return clientResponse(res, 500);
-//   }
-// };
-
 /** Retrieve the contracts in the database */
 const getContracts = async (_, res) => {
   try {
-    const contracts = await contractService.getcontractInstance();
+    const contracts = await contractService.getContractInstance();
 
     if (!contracts || contracts.length === 0) {
       logger.warn('No contracts found in the database');
