@@ -25,8 +25,8 @@ const AllBoxData = function getAllBoxData() {
     return infuraDataArray;
 };
 
-const CreateBoxData = function setBoxData(name, jsonObject) {
-    const infuraData = await Infura.IPFSPortalPost.postToIPFS(jsonObject);
+const CreateBoxData = function setBoxData(name, object) {
+    const infuraData = await Infura.IPFSPortalPost.postToIPFS(object);
     const hash = infuraData.Hash;
     const infuraHash = await box.public.set(name, hash);
     return infuraHash;
