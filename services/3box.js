@@ -19,14 +19,14 @@ const AllBoxData = function getAllBoxData() {
     const boxData = await space.public.all();
     let infuraDataArray;
     boxData.forEach(function(hash,index) {
-        const infuraData = await Infura.IPFSPortalGet.getObjectData(hash);
+        const infuraData = await Infura.IPFSPortalGet(hash);
         infuraDataArray.push(infuraData);
     });
     return infuraDataArray;
 };
 
 const CreateBoxData = function setBoxData(name, object) {
-    const infuraData = await Infura.IPFSPortalPost.postToIPFS(object);
+    const infuraData = await Infura.IPFSPortalPost(object);
     const hash = infuraData.Hash;
     const infuraHash = await box.public.set(name, hash);
     return infuraHash;

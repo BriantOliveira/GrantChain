@@ -1,33 +1,40 @@
-const { Router } = require('express');
-const logger = require('../utils/logger');
+const axios = require('axios');
 const { clientResponse } = require('../utils/clientResponse');
-const iRouter = Router();
 const infuraEndPoint = "https://ipfs.infura.io:5001/api/v0/";
 
-const IPFSPortalGet = function getObjectData(hash) {
-    iRouter.get(infuraEndPoint + 'object/data?arg=' + hash, async (req, res) => {
-      try {
-        return clientResponse(res, 200, {
-          message: 'data retrieved from IPFS',
-        });
-      } catch (error) {
-        logger.error(`An unexpected error occurred logging in the Organization: ${error}`);
-        return clientResponse(res, 500);
-      }
-    });
+const headers = {
+    'Content-Type': 'multipart/form-data'
 };
 
-const IPFSPortalPost = function postToIPFS(object) {
-    iRouter.post(infuraEndPoint + 'add?cid-version=0&hash=sha2-256&file=' + object, async (req, res) => {
-      try {
-        return clientResponse(res, 200, {
-          message: 'posted to IPFS',
-        });
-      } catch (error) {
-        logger.error(`An unexpected error occurred logging in the Organization: ${error}`);
-        return clientResponse(res, 500);
-      }
+const getUrl = axios.create({
+  baseURL: infuraEndPoint + "object/data?arg=",
+});
+
+const postUrl = axios.create({
+  baseURL: infuraEndPoint,
+  headers: headers,
+});
+
+const IPFSPortalGet = async hash => {
+    try {
+      const response = await getUrl.get('' + hash);
+      return response;
+    } catch (error) {
+      logger.error(error);
+      return undefined;
+    }
+};
+
+const IPFSPortalPost = async object => {
+  try {
+    const response = await postUrl.post('/add?cid-version=0&hash=sha2-256', {
+      file: object,
     });
+    return response;
+  } catch (error) {
+    logger.error(error);
+    return undefined;
+  }
 };
 
 module.exports = IPFSPortalGet, IPFSPortalPost;
