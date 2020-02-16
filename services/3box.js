@@ -10,25 +10,25 @@ const box = await Box.openBox(myAddress, window.ethereum, {});
 const space = await box.openSpace('myApp');
 
 const BoxData = function getBoxData(name) {
-    const key = await space.public.get(name);
-    const infuraData = await Infura.IPFSPortalGet.getObjectData(key);
+    const hash = await space.public.get(name);
+    const infuraData = await Infura.IPFSPortalGet.getObjectData(hash);
     return infuraData;
 };
 
 const AllBoxData = function getAllBoxData() {
     const boxData = await space.public.all();
-    let infuraDataArray = [];
-    boxData.values(obj).forEach(function(key,index) {
-        const infuraData = await Infura.IPFSPortalGet.getObjectData(key);
+    let infuraDataArray;
+    boxData.forEach(function(hash,index) {
+        const infuraData = await Infura.IPFSPortalGet.getObjectData(hash);
         infuraDataArray.push(infuraData);
     });
     return infuraDataArray;
 };
 
-const CreateBoxData = function setBoxData(jsonObject) {
+const CreateBoxData = function setBoxData(name, jsonObject) {
     const infuraData = await Infura.IPFSPortalPost.postToIPFS(jsonObject);
-    const key = infuraData;
-    const infuraHash = await box.public.set(key, hash(infuraData.id));
+    const hash = infuraData.Hash;
+    const infuraHash = await box.public.set(name, hash);
     return infuraHash;
 };
 
