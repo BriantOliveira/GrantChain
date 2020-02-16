@@ -1,0 +1,5 @@
+.navbar:not(.navbar-transparent) .logo-small {
+  width: 160px;
+  height: 46px;
+}
+

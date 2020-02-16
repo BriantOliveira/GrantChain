@@ -1,12 +1,16 @@
 const { Router } = require('express');
 const { clientResponse } = require('../utils/clientResponse');
+const { User } = require('../db/models');
 
 // TODO: This file should probably be removed, and the healthcheck endpoint moved to the app.js file
 
 const router = Router();
 
+
 /** Simple test route or ping route to check availability */
-router.get('/', (req, res) => clientResponse(res, 200, {message: 'Welcome to GrantChain'}));
+router.get('/', (req, res) => {
+  res.render('index');
+});
 
 /** Express sanitizer */
 router.post('/', (req, res) => {

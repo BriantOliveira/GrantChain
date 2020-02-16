@@ -1,0 +1,32 @@
+.main p, .main h3, .main h4{
+	color: #333333;
+}
+.line {border-top:1px solid rgb(233, 233, 233);}
+.corner-controls{
+	position: absolute;
+	padding-top: 20px;
+	}
+	
+.icon-info{
+	color: #1883ba;
+}
+
+.main p.light-text{
+	color: #999999;
+}
+
+footer p{
+	font-size: .5em;
+}
+
+
+.standard-link:hover{
+color: #1883ba;
+}
+
+.bg-purple{
+	background-color: #9c27b0;
+}
+
+
+

@@ -3,34 +3,46 @@
  * GrantParty main server
  */
 require('dotenv').config();
-const cookieParser = require('cookie-parser');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const path = require('path');
 const Sequelize = require('sequelize');
+const jwt = require('jsonwebtoken');
+const hbs = require('express-handlebars');
+const methodOverride = require('method-override');
+const favicon = require('serve-favicon');
+
 
 const { Op } = Sequelize;
 const sanitizer = require('sanitize');
 const expressSanitizer = require('express-sanitizer');
 const bodyParser = require('body-parser');
-const { verifyAuthentication } = require('./utils/middleware');
 
+/** Instantiate the server */
+const app = express();
+const PORT = process.env.PORT || 3000;
 
 /** Wallet */
 // const ost = require('./services/ost.js');
 
 
 /** Import Routes */
+const { verifyAuthentication } = require('./utils/middleware');
 const routes = require('./routes');
 const indexRouter = require('./controllers/index');
 const authRouter = require('./controllers/auth');
+const profileRouter = require('./routes/profile');
 
-/** Instantiate the server */
-const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(cookieParser());
+app.use(methodOverride('_method'))
 
 /** Set up static public directory */
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.engine('.hbs', hbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', '.hbs');
+app.use(express.static('public'));
+
 
 /** Middlewarez */
 app.use(
@@ -39,10 +51,12 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(compression());
 app.use(sanitizer.middleware);
 app.use(expressSanitizer());
+
+
+
 
 /**  SQL Connection */
 const sequelize = new Sequelize(
@@ -69,9 +83,11 @@ sequelize
 /** Set up routes */
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/profile', profileRouter);
+
 
 /** Protected Routes */
-app.use(verifyAuthentication);
+// app.use(verifyAuthentication);
 app.use('/api', routes);
 
 // wallets

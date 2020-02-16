@@ -4,6 +4,20 @@ const { clientResponse } = require('../utils/clientResponse');
 const logger = require('../utils/logger');
 
 
+/** Render user profile */
+const userProfilePage = async (req, res) => {
+  try {
+    const profile = await userService.getUserByID(req.body.id)
+
+    // TODO: Change to render user profile
+    return clientResponse(res, 200, {profile}) 
+  } catch (error) {
+    logger.error(`An unexpected error has occurred: ${error}`);
+    return clientResponse(res, 500, error);
+  }
+}
+
+
 /** Update Collaborator Profile */
 const updateUserProfile = async (req, res) => {
   try {
@@ -48,7 +62,6 @@ const updateUserProfile = async (req, res) => {
 };
 
 
-
 /** Update Organization Profile */
 const updateOrganizationProfile = async (req, res) => {
   try {
@@ -90,4 +103,17 @@ const updateOrganizationProfile = async (req, res) => {
   }
 };
 
-module.exports = { updateUserProfile, updateOrganizationProfile };
+/** Render Organization profile */
+const organizationProfilePage = async (req, res) => {
+  try {
+    const organizationProfile = await organizationService.getUserByID(req.body.id)
+
+    // TODO: Change to render organization profile
+    return clientResponse(res, 200, {data: organizationProfile}) 
+  } catch (error) {
+    logger.error(`An unexpected error has occurred: ${error}`);
+    return clientResponse(res, 500, error);
+  }
+}
+
+module.exports = { updateUserProfile, updateOrganizationProfile, userProfilePage, organizationProfilePage };
