@@ -3,8 +3,8 @@
 // const { User } = require('./user')
 
 module.exports = (sequelize, DataTypes) => {
-  const ContractInstance = sequelize.define(
-    'ContractInstance', 
+  const contractInstance = sequelize.define(
+    'contractInstance', 
     {
     id: {
       type: DataTypes.UUID,
@@ -28,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING
     }
   }, {});
-  ContractInstance.associate = function(models) {
+  contractInstance.associate = function(models) {
     // associations can be defined here
     
     // contractInstance.belongsTo(models.Organization, { foreignKey: 'organizationId' });
     // contractInstance.hasMany(models.User, { foreignKey: 'collaboratorsId' });
   };
-  return ContractInstance;
+  return contractInstance;
 };

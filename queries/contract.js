@@ -2,34 +2,46 @@
 * Contracts Query 
 */
 const Sequelize = require('sequelize');
+const { ContractInstance } = require('../db/models');
 
 const { Op } = Sequelize;
-const { contractInstance } = require('../db/models');
 
-const getcontractInstance = async () => {
-  const contract = await contractInstance.findAll();
+/** Create a new Contract Instance */
+const createNewContract = async body => {
+  const newContract = await ContractInstance.create(body, { returning: true });
+
+  return newContract;
+};
+
+const getContractInstance = async () => {
+  const contract = await ContractInstance.findAll();
 
   return contract;
 };
 
 const getContractInstanceByID = async id => {
-  const contract = await contractInstance.find({ where: { id } });
+  const contract = await ContractInstance.find({ where: { id } });
 
   return contract;
 };
 
 const getContractInstanceByUserID = async collaboratorsId => {
-  const contract = await contractInstance.findAll({
-    where: { collaboratorsId: { [Op.like]: collaboratorsId } },
-    returning: true,
+  const contract = await ContractInstance.findAll({
+    where: { 
+      collaboratorsId: { 
+        [Op.like]: collaboratorsId 
+      } },
   });
 
   return contract;
 };
 
 const getContractInstanceByOrganizationID = async organizationId => {
-  const contract = await contractInstance.findAll({
-    where: { organizationId: { [Op.like]: organizationId } },
+  const contract = await ContractInstance.findAll({
+    where: { 
+      organizationId: { 
+        [Op.like]: organizationId 
+      } },
     returning: true,
   });
 
@@ -37,13 +49,14 @@ const getContractInstanceByOrganizationID = async organizationId => {
 };
 
 const deleteContractInstance = async id => {
-  const result = await contractInstance.destroy({ where: { id } });
+  const result = await ContractInstance.destroy({ where: { id } });
 
   return result;
 };
 
 module.exports = {
-  getcontractInstance,
+  createNewContract,
+  getContractInstance,
   getContractInstanceByID,
   getContractInstanceByUserID,
   getContractInstanceByOrganizationID,

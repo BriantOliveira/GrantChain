@@ -19,7 +19,8 @@ if (config.use_env_variable) {
 
 const db = {
   User: sequelize.import('./user.js'),
-  Organization: sequelize.import('./organization.js')
+  Organization: sequelize.import('./organization.js'),
+  ContractInstance: sequelize.import('./contractinstance.js')
 };
 
 Object.keys(db).forEach(key => {

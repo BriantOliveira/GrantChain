@@ -3,15 +3,58 @@
 */
 const contractService = require('../queries/contract');
 const { clientResponse } = require('../utils/clientResponse');
-const { contractInstance } = require('../db/models');
 const logger = require('../utils/logger');
 
-/** Create a new Contract Instance */
-const createNewContract = async contractInfo => {
-  const newContract = await contractInstance.create(contractInfo, { w: 1 });
 
-  return newContract;
+/** Create a new Contract */
+const newContract = async (req, res) => {
+  try {
+    // TODO: Need to add some validation here for the body
+    const { body } = req;
+
+    const item = await contractService.createNewContract(body);
+
+    // FIXME: What are the scenarios in which this would actually be truthy?
+    // if (!item) {
+    //   logger.error(`An error occurred attempting to create Item: ${body}`);
+    //   return clientResponse(res, 500, {
+    //     message: 'An error occurred attempting to create Item',
+    //   });
+    // }
+
+    return clientResponse(res, 200, {
+      message: 'Item created successfully',
+      data: { item },
+    });
+  } catch (error) {
+    logger.error(`An unexpected error has occurred: ${error}`);
+    return clientResponse(res, 500, error);
+  }
 };
+
+// const newContract = async (req, res) => {
+//   try {
+//     console.log("BODY 1: ", req.body)
+//     const savedContract = await contractService.createNewContract(req.body);
+
+//     console.log("HERE: ", savedContract)
+//     /** Early exit if saving contract fails */
+//     if (!savedContract) {
+//       logger.error(`Contract creation error: ${req.body}`);
+//       return clientResponse(res, 500, {
+//         message: 'Something went wrong trying to create the contract.',
+//       });
+//     }
+
+//     return clientResponse(res, 200, {
+//       message: 'Contract created successfully.',
+//       data: { savedContract },
+//     });
+//   } catch (error) {
+//     logger.error(`An unexpected error has occured: ${error}`);
+//     return clientResponse(res, 500);
+//   }
+// };
 
 /** Retrieve the contracts in the database */
 const getContracts = async (_, res) => {
@@ -129,7 +172,7 @@ const deleteContractInstance = async (req, res) => {
 };
 
 module.exports = {
-  createNewContract,
+  newContract,
   getContracts,
   getContractByID,
   getContractByUserID,

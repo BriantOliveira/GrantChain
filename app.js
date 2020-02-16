@@ -17,10 +17,11 @@ const { verifyAuthentication } = require('./utils/middleware');
 
 
 /** Wallet */
-const ost = require('./services/ost.js');
+// const ost = require('./services/ost.js');
 
 
 /** Import Routes */
+const routes = require('./routes');
 const indexRouter = require('./controllers/index');
 const authRouter = require('./controllers/auth');
 
@@ -47,7 +48,6 @@ app.use(expressSanitizer());
 const sequelize = new Sequelize(
   `postgres://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBHOST}:${process.env.DBPORT}/${process.env.DBNAME}`,
   {
-    operatorsAliases: Op,
     pool: {
       max: 5,
       min: 0,
@@ -72,6 +72,7 @@ app.use('/auth', authRouter);
 
 /** Protected Routes */
 app.use(verifyAuthentication);
+app.use('/api', routes);
 
 // wallets
 // app.use(ost);
@@ -88,5 +89,5 @@ app.use((req, _, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log('GrantParty listening on port', PORT);
+  console.log('GrantChain listening on port', PORT);
 });

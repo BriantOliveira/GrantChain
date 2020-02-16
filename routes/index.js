@@ -12,11 +12,12 @@ const contract = require('../controllers/contract');
 const router = express.Router();
 
 
-// Receipt Routes
-router.post('/contract', );
-router.get('/receipt', receipt.getReceipts);
-router.get('/receipt/:id', receipt.getReceiptByID);
-router.get('/receipt/:userID', receipt.getReceiptsByUserID);
-router.delete('/receipt/:id', receipt.deleteReceipt);
+// Contracts Routes
+router.post('/contract/new',  contract.newContract);
+router.get('/contract', contract.getContracts);
+router.get('/contract/:id', contract.getContractByID);
+router.get('/contract/:collaboratorsId', contract.getContractByUserID);
+router.get('/contract/:organizationId', contract.getContractByOrganizationID);
+router.delete('/contract/:id', contract.deleteContractInstance);
 
 module.exports = router;
