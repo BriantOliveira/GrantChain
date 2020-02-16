@@ -3,8 +3,8 @@ pragma solidity ^0.6.1;
 
 
 /// @title funding contract
-/// @original author Gbenro Adesoye
-/// @updated from Solidity Version 4 to Solidity Version 6 by Jaeson Booker
+/// @author Gbenro Adesoye
+/// @author Jaeson Booker updated from Solidity 4.2 to Solidity 6.1
 
 
 /// @notice A factory contract for the main Funding contract

@@ -24,7 +24,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 /** Wallet */
-// const ost = require('./services/ost.js');
+const ost = require('./services/ost.js');
 
 
 /** Import Routes */
@@ -91,7 +91,7 @@ app.use('/profile', profileRouter);
 app.use('/api', routes);
 
 // wallets
-// app.use(ost);
+// app.use('/wallet', ost);
 
 /** Any remaining request with an extension (.js, .css, etc...) send 404 */
 app.use((req, _, next) => {
