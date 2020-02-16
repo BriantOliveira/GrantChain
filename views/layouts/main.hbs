@@ -11,8 +11,8 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- Material Kit CSS -->
-  <link href="/assets/css/material-kit.css?v=2.2.0" rel="stylesheet" />
-  <link rel="stylesheet" type="text/css href="/css/styles.css">
+  <link  href="/assets/css/material-kit.css?v=2.2.0" rel="stylesheet" />
+  <link rel="stylesheet" src="/css/styles.css">
 
 </head>
 <body>
@@ -21,11 +21,15 @@
   <div class="container">
     {{{body}}}
   </div>
-
+  {{> footer}}
+  <!-- Development version -->
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+  <!-- Production version -->
   <!--   Core JS Files   -->
-  <script src="/jquery.min.js" type="text/javascript"></script>
-  <script src="/popper.min.js" type="text/j/v/script"></script>
-  <script src="/bootstrap-material-design.min.js" type="text/javascript"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="/assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="/assets/js/core/popper.min.js" type="text/j/v/script"></script>
+  <script src="/assets/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
   <script src="/assets/js/plugins/moment.min.js"></script>
   <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
   <script src="/assets/js/plugins/bootstrap-datetimepicker.js" type="text/javascript"></script>

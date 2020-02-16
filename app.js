@@ -32,7 +32,7 @@ const { verifyAuthentication } = require('./utils/middleware');
 const routes = require('./routes');
 const indexRouter = require('./controllers/index');
 const authRouter = require('./controllers/auth');
-const profileRouter = require('./routes/profile');
+const profileRouter = require('./controllers/organization');
 
 app.use(cookieParser());
 app.use(methodOverride('_method'))
@@ -83,7 +83,7 @@ sequelize
 /** Set up routes */
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/profile', profileRouter);
+app.use('/organization', profileRouter);
 
 
 /** Protected Routes */

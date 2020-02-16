@@ -31,12 +31,15 @@ const hashPassword = async function(password) {
   }
 };
 
+router.get('/join', (req, res) => {
+  res.render('joinNow');
+});
 
 /**
  * User Signup Routes
  */
-router.get('/signup', async (req, res) => {
-  clientResponse(res, 200, {message: 'User Signup Page'})
+router.get('/signup', (req, res) => {
+  res.render('signup');
 });
 
 router.post('/signup', async (req, res) => {
